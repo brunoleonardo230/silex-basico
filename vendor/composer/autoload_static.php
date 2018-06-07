@@ -25,6 +25,7 @@ class ComposerStaticInit3da132bc3fd9f80bf92e10e341d7db5c
             'Symfony\\Component\\EventDispatcher\\' => 34,
             'Symfony\\Component\\Debug\\' => 24,
             'Silex\\' => 6,
+            'SON\\' => 4,
         ),
         'P' => 
         array (
@@ -69,6 +70,10 @@ class ComposerStaticInit3da132bc3fd9f80bf92e10e341d7db5c
         'Silex\\' => 
         array (
             0 => __DIR__ . '/..' . '/silex/silex/src/Silex',
+        ),
+        'SON\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src',
         ),
         'Psr\\Log\\' => 
         array (

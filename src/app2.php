@@ -5,13 +5,10 @@ use Symfony\Component\HttpFoundation\Response;
 
 $app = new Silex\Application();
 
-$app['view.config'] = [
-    'path_templates' => __DIR__ . '/../templates'
-];
+$app['valor1'] = "Teste";
 
-$app['view.renderer'] = function() use($app){
-    $pathTemplates = $app['view.comfig']['path_templates'];
-    return new ViewRenderer($pathTemplates);
+$app['get_date_time'] = function(){
+    return new \DateTime();
 };
 
 $app->get('/', function(Silex\Application $app){
@@ -23,7 +20,10 @@ $app->get('/', function(Silex\Application $app){
 });
 
 $app->get('/home', function(){
-    return $app['view.renderer']->render('home',[]);
+    ob_start();
+    include __DIR__ . '/../templates/home.php';
+    $saida = ob_get_clean();
+    return $saida;
 });
 
 $app->post('/get-name/{param1}/{param2}', function(Request $request, Silex\Application $app, $param1, $param2){
