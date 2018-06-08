@@ -22,16 +22,18 @@ $app->get('/', function(Silex\Application $app){
     return "Hello Word!{$app['valor1']}";
 });
 
-$app->get('/home', function(){
-    return $app['view.renderer']->render('home',[]);
+$app->get('/home', function() use ($app){
+    return $app['view.renderer']->render('home');
 });
 
-$app->post('/get-name/{param1}/{param2}', function(Request $request, Silex\Application $app, $param1, $param2){
-    $name = $request->get('name','sem nome');
-    ob_start();
-    include __DIR__ . '/../templates/get-name.php';
-    $saida = ob_get_clean();
-    return $saida;
+$app->post('/get-name/{param1}/{param2}', 
+    function(Request $request, Silex\Application $app, $param1, $param2){
+        $name = $request->get('name','sem nome');
+        return $app['view.renderer']->render('get-name',[
+            'name' => $name,
+            'param1' => $param1,
+            'param2' => $param2
+        ]);
 });
 
 $app->run();
